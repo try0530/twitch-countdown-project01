@@ -317,6 +317,11 @@ function createAddTimeManual() {
     if (!isWork) {
       updateClock("countdown");
     }
+
+    const animationValue = document.getElementById("animation-set").value
+      ? document.getElementById("animation-set").value
+      : "手動加時";
+    createAnAnimationItem(animationValue);
   });
 }
 
@@ -376,27 +381,50 @@ function createAddTimeBtn() {
     if (!isWork) {
       updateClock("countdown");
     }
+
+    const animationValue = document.getElementById("animation-set").value
+      ? document.getElementById("animation-set").value
+      : "+60";
+    createAnAnimationItem(animationValue);
   });
+
   add10Btn.addEventListener("click", function () {
     addTime(600);
     // 當計時器沒有在運作時，更新畫面上顯示的時間
     if (!isWork) {
       updateClock("countdown");
     }
+
+    const animationValue = document.getElementById("animation-set").value
+      ? document.getElementById("animation-set").value
+      : "+10";
+    createAnAnimationItem(animationValue);
   });
+
   add3Btn.addEventListener("click", function () {
     addTime(180);
     // 當計時器沒有在運作時，更新畫面上顯示的時間
     if (!isWork) {
       updateClock("countdown");
     }
+
+    const animationValue = document.getElementById("animation-set").value
+      ? document.getElementById("animation-set").value
+      : "+3";
+    createAnAnimationItem(animationValue);
   });
+
   add1Btn.addEventListener("click", function () {
     addTime(60);
     // 當計時器沒有在運作時，更新畫面上顯示的時間
     if (!isWork) {
       updateClock("countdown");
     }
+
+    const animationValue = document.getElementById("animation-set").value
+      ? document.getElementById("animation-set").value
+      : "+1";
+    createAnAnimationItem(animationValue);
   });
 }
 
@@ -913,3 +941,20 @@ function updateClock(type) {
   }
 }
 /*********** 其他功能 ***************/
+
+/************* 動畫 ****************/
+function createAnAnimationItem(text) {
+  const animationItemEle = document.createElement("span");
+  const animationItemTextNode = document.createTextNode(text);
+  animationItemEle.appendChild(animationItemTextNode);
+  animationItemEle.setAttribute("id", "animation-span");
+
+  const countdownTime = document.getElementById("countdown-time");
+  countdownTime.appendChild(animationItemEle);
+
+  const animationItem = document.getElementById("animation-span");
+  animationItem.addEventListener("animationend", function () {
+    animationItem.remove();
+  });
+}
+/************* 動畫 ****************/
